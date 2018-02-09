@@ -19,12 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="com_fhr_jnidemo_complex_Employee.cpp" />
-    <ClCompile Include="com_fhr_jnidemo_helloworld_HelloWorld.cpp" />
+    <ClCompile Include="com_fhr_basejnidemo_complex_Employee.cpp" />
+    <ClCompile Include="com_fhr_basejnidemo_helloworld_HelloWorld.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="com_fhr_jnidemo_complex_Employee.h" />
-    <ClInclude Include="com_fhr_jnidemo_helloworld_HelloWorld.h" />
+    <ClInclude Include="com_fhr_basejnidemo_complex_Employee.h" />
+    <ClInclude Include="com_fhr_basejnidemo_helloworld_HelloWorld.h" />
     <ClInclude Include="jni.h" />
     <ClInclude Include="jni_md.h" />
   </ItemGroup>

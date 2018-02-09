@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\basejnidemo\jni.h" />
-    <ClInclude Include="..\basejnidemo\jni_md.h" />
+    <ClInclude Include="jni.h" />
+    <ClInclude Include="jni_md.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

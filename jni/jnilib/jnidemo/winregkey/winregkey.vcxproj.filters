@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\basejnidemo\jni.h">
+    <ClInclude Include="jni.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\basejnidemo\jni_md.h">
+    <ClInclude Include="jni_md.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

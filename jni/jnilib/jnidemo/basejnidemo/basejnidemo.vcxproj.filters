@@ -15,24 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="com_fhr_jnidemo_complex_Employee.cpp">
+    <ClCompile Include="com_fhr_basejnidemo_complex_Employee.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="com_fhr_jnidemo_helloworld_HelloWorld.cpp">
+    <ClCompile Include="com_fhr_basejnidemo_helloworld_HelloWorld.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="com_fhr_jnidemo_complex_Employee.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="com_fhr_jnidemo_helloworld_HelloWorld.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="jni.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="jni_md.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="com_fhr_basejnidemo_complex_Employee.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="com_fhr_basejnidemo_helloworld_HelloWorld.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

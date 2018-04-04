@@ -1,3 +1,28 @@
+# java
+*.iml
+/.idea
+target
+/*/.*
+rebel.xml
+.project
+*.class
+.settings/
+.DS_Store
+
+# go
+bin/
+pkg/
+build/
+.gradle/
+.idea/
+*.iml
+
+# dotnet&C
+bin
+Debug
+packages/*
+
+
 # Compiled class file
 *.class
 

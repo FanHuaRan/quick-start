@@ -1,0 +1,4 @@
+C:\Users\cdfanhuaran\.CLion2018.1\system\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /cygdrive/e/mywork/quick-start/c/posixthread/posixhello
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /cygdrive/e/mywork/quick-start/c/posixthread/posixhello/cmake-build-debug

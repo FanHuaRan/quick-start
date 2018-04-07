@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/e/mywork/quick-start/c/posixthread/posixhello/thread1.c
+pthread.h
+-
+stdlib.h
+-
+unistd.h
+-
+stdio.h
+-
+
+/cygdrive/e/mywork/quick-start/c/posixthread/posixhello/thread2.c
+pthread.h
+-
+stdlib.h
+-
+unistd.h
+-
+stdio.h
+-
+

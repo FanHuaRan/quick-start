@@ -1,0 +1,1 @@
+/usr/bin/cc -g  -Wl,--enable-auto-import CMakeFiles/posixlock.dir/main.c.o  -o posixlock.exe -Wl,--out-implib,libposixlock.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

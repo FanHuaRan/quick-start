@@ -1,0 +1,3 @@
+/cygdrive/e/mywork/quick-start/c/posixthread/posixhello/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/cygdrive/e/mywork/quick-start/c/posixthread/posixhello/cmake-build-debug/CMakeFiles/edit_cache.dir
+/cygdrive/e/mywork/quick-start/c/posixthread/posixhello/cmake-build-debug/CMakeFiles/posixhello.dir

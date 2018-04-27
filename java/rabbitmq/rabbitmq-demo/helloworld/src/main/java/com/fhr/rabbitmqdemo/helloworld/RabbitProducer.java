@@ -25,7 +25,7 @@ public class RabbitProducer {
         factory.setHost(IP_ADDRESS);
         factory.setPort(PORT);
         factory.setUsername("root");
-        factory.setPassword("123");
+        factory.setPassword("root");
 
         Connection connection = factory.newConnection(); //创建连接
         Channel channel = connection.createChannel(); //创建信道

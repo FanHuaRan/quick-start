@@ -10,6 +10,7 @@ namespace Demo1
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             //得到当前的应用程序域

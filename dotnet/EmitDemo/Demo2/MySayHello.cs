@@ -8,10 +8,10 @@ namespace Demo2
 {
     public class MySayHello : ISayHello
     {
-        public string SayHello(string name)
+        public String SayHello(string name)
         {
-                Console.WriteLine("Hello {0}", name);
-                return "Hello " + name;
+            Console.WriteLine("Hello {0}", name);
+            return "Hello " + name;
         }
     }
 }

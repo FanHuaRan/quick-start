@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: testatomikos
+  jpa:
+    show-sql: true
+  jta:
+    enabled: true
+    atomikos:
+      datasource:
+        jta-user:
+          xa-properties.url: jdbc:mysql://localhost:3306/jta-user
+          xa-properties.user: root
+          xa-properties.password: root
+          xa-data-source-class-name: com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
+          unique-resource-name: jta-user
+          max-pool-size: 25
+          min-pool-size: 3
+          max-lifetime: 20000
+          borrow-connection-timeout: 10000
+        jta-income:
+          xa-properties.url: jdbc:mysql://localhost:3306/jta-income
+          xa-properties.user: root
+          xa-properties.password: root
+          xa-data-source-class-name: com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
+          unique-resource-name: jta-income
+          max-pool-size: 25
+          min-pool-size: 3
+          max-lifetime: 20000
+          borrow-connection-timeout: 10000
+server:
+  port: 9090

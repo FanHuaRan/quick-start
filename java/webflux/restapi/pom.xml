@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>helloworld</artifactId>
+    <artifactId>restapi</artifactId>
 
-    <name>helloworld</name>
-    <!-- FIXME change it to the project's website -->
+    <name>restapi</name>
     <url>http://www.example.com</url>
+
 
 </project>

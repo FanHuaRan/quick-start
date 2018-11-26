@@ -10,6 +10,7 @@
     <modules>
         <module>shared-folder</module>
         <module>ftp</module>
+        <module>nfs</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>

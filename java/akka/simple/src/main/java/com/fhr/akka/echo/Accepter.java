@@ -6,7 +6,6 @@ import akka.actor.UntypedActor;
 import akka.io.Tcp;
 import akka.io.TcpMessage;
 
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
 
 /**

@@ -1,6 +1,14 @@
 package com.fhr.akka.minirpg;
 
 import akka.actor.UntypedActor;
+import com.fhr.akka.minirpg.request.AddExpRequest;
+import com.fhr.akka.minirpg.request.CreatePlayerRequest;
+import com.fhr.akka.minirpg.request.GetPlayerInfoRequest;
+import com.fhr.akka.minirpg.request.LevelUpRequest;
+import com.fhr.akka.minirpg.response.AddExpResponse;
+import com.fhr.akka.minirpg.response.CreatePlayerResponse;
+import com.fhr.akka.minirpg.response.GetPlayerInfoResponse;
+import com.fhr.akka.minirpg.response.LevelUpResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,14 +16,15 @@ import java.util.List;
 /**
  * @author Fan Huaran
  * created on 2018/11/28
- * @description
+ * @description 游戏消息处理器
  */
 public class MsgHandler extends UntypedActor {
-
+    // 记录当前的玩家数量
     private final List<Player> players = new ArrayList<>();
 
     @Override
-    public void onReceive(Object msg) throws Exception {
+    public void onReceive(Object msg) {
+        // 处理游戏消息
         if (msg instanceof CreatePlayerRequest) {
             int newPlayerId = createPlayer((CreatePlayerRequest) msg);
             getSender().tell(new CreatePlayerResponse(newPlayerId), getSelf());
@@ -57,6 +66,5 @@ public class MsgHandler extends UntypedActor {
         Player player = players.get(req.getPlayerId());
         return new PlayerInfo(player.getId(), player.getName(), player.getExp(), player.getLevel());
     }
-
 }
 

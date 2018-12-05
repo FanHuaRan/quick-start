@@ -3,7 +3,7 @@ package com.fhr.akka.minirpg;
 /**
  * @author Fan Huaran
  * created on 2018/11/28
- * @description
+ * @description 玩家信息
  */
 public class Player {
     private int id;

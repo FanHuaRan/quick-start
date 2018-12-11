@@ -5,7 +5,7 @@ import com.fhr.rmi.quickstart.api.GreetingsService;
 /**
  * @author Fan Huaran
  * created on 2018/12/5
- * @description
+ * @description 服务实现
  */
 public class GreetingsServiceImpl implements GreetingsService {
 

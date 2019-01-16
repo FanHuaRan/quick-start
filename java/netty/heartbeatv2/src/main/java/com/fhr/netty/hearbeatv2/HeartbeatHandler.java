@@ -1,10 +1,8 @@
 package com.fhr.netty.hearbeatv2;
 
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleStateEvent;
-import jdk.nashorn.internal.runtime.linker.Bootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +13,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * created on 2018/12/29
  * @description
  */
-public abstract class HeartbeatHandler extends SimpleChannelInboundHandler<String> {
+public class HeartbeatHandler extends SimpleChannelInboundHandler<String> {
     private static final Logger logger = LoggerFactory.getLogger(HeartbeatHandler.class);
 
     private static final String PING_MSG = "ping";
@@ -74,19 +72,20 @@ public abstract class HeartbeatHandler extends SimpleChannelInboundHandler<Strin
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         logger.info("--- {} is inactive---", ctx.channel().remoteAddress());
-        Channel channel = ctx.channel();
     }
 
     protected void handleReaderIdle(ChannelHandlerContext ctx) {
         logger.info("---READER_IDLE---");
+        sendPingMsg(ctx);
     }
 
     protected void handleWriterIdle(ChannelHandlerContext ctx) {
         logger.info("---WRITER_IDLE---");
+        sendPingMsg(ctx);
     }
 
     protected void handleAllIdle(ChannelHandlerContext ctx) {
         logger.info("---ALL_IDLE---");
+        // sendPingMsg(ctx);
     }
-
 }

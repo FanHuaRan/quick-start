@@ -1,14 +1,16 @@
-package com.fhr.netty.heartbeat.client;
+package com.fhr.netty.hearbeatv2.client;
 
-import com.fhr.netty.heartbeat.DelimiterEncoder;
+import com.fhr.netty.hearbeatv2.DelimiterEncoder;
+import com.fhr.netty.hearbeatv2.HeartbeatHandler;
 import io.netty.bootstrap.Bootstrap;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.timeout.IdleStateHandler;
 
@@ -34,15 +36,15 @@ public class ClientBoot {
                         // 添加空闲状态处理器
                         p.addLast(new IdleStateHandler(0, 0, 10));
                         // 添加行分隔符解码器
-//                        p.addLast(new DelimiterBasedFrameDecoder(1024,true,Unpooled.copiedBuffer("&&".getBytes(StandardCharsets.UTF_8))));
-                        p.addLast(new LineBasedFrameDecoder(1024));
+                        p.addLast(new DelimiterBasedFrameDecoder(1024, true, Unpooled.copiedBuffer("&&".getBytes(StandardCharsets.UTF_8))));
                         // 添加字符串解码器
                         p.addLast(new StringDecoder(StandardCharsets.UTF_8));
-//                        p.addLast(new StringEncoder(StandardCharsets.UTF_8));
-                        // 添加请求处理器
-                        p.addLast(new ClientHandler());
                         // 添加行分隔符编码器
                         p.addLast(new DelimiterEncoder());
+//                        p.addLast(new StringEncoder(StandardCharsets.UTF_8));
+                        // 添加心跳处理器
+                        p.addLast(new HeartbeatHandler());
+                        // 添加请求处理器
                     }
                 });
 

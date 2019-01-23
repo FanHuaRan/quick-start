@@ -16,7 +16,7 @@ public class ClientHandler extends AbstractHeartbeatHandler {
 
     @Override
     protected void handleData(ChannelHandlerContext ctx, String msg) {
-        logger.info("receive server msg : " + msg);
+        logger.info("receive com.fhr.netty.graceclose.server msg : " + msg);
     }
 
     @Override

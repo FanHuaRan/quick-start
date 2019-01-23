@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * @author Fan Huaran
  * created on 2018/12/29
- * @description
+ * @description ping-pong型心跳入站处理器
  */
 public class HeartbeatHandler extends SimpleChannelInboundHandler<String> {
     private static final Logger logger = LoggerFactory.getLogger(HeartbeatHandler.class);
@@ -20,7 +20,24 @@ public class HeartbeatHandler extends SimpleChannelInboundHandler<String> {
 
     private static final String PONG_MSG = "pong";
 
-    private static final AtomicLong HEAR_BEAT_COUNT = new AtomicLong(0L);
+    private final AtomicLong HEAR_BEAT_COUNT = new AtomicLong(0L);
+
+    private final boolean handleReaderIdle;
+
+    private final boolean handleWriterIdle;
+
+    private final boolean handleAllIdle;
+
+    public HeartbeatHandler(boolean handleReaderIdle, boolean handleWriterIdle, boolean handleAllIdle) {
+        this(true, handleReaderIdle, handleWriterIdle, handleAllIdle);
+    }
+
+    public HeartbeatHandler(boolean autoRelease, boolean handleReaderIdle, boolean handleWriterIdle, boolean handleAllIdle) {
+        super(autoRelease);
+        this.handleReaderIdle = handleReaderIdle;
+        this.handleWriterIdle = handleWriterIdle;
+        this.handleAllIdle = handleAllIdle;
+    }
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
@@ -50,13 +67,19 @@ public class HeartbeatHandler extends SimpleChannelInboundHandler<String> {
             IdleStateEvent e = (IdleStateEvent) evt;
             switch (e.state()) {
                 case READER_IDLE:
-                    handleReaderIdle(ctx);
+                    if (handleReaderIdle) {
+                        handleReaderIdle(ctx);
+                    }
                     break;
                 case WRITER_IDLE:
-                    handleWriterIdle(ctx);
+                    if (handleWriterIdle) {
+                        handleWriterIdle(ctx);
+                    }
                     break;
                 case ALL_IDLE:
-                    handleAllIdle(ctx);
+                    if (handleAllIdle) {
+                        handleAllIdle(ctx);
+                    }
                     break;
                 default:
                     break;
@@ -65,27 +88,29 @@ public class HeartbeatHandler extends SimpleChannelInboundHandler<String> {
     }
 
     @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+    public void channelActive(ChannelHandlerContext ctx) {
         logger.info("---{} is active---", ctx.channel().remoteAddress());
     }
 
     @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+    public void channelInactive(ChannelHandlerContext ctx) {
         logger.info("--- {} is inactive---", ctx.channel().remoteAddress());
+        // TODO 检测到连接关闭，这儿可以根据业务情况进行处理:比如客户端进行断线重连
     }
 
-    protected void handleReaderIdle(ChannelHandlerContext ctx) {
-        logger.info("---READER_IDLE---");
+    private void handleReaderIdle(ChannelHandlerContext ctx) {
+        logger.info("--- {} is READER_IDLE---", ctx.channel().remoteAddress());
+        // 服务端可以不发送心跳，直接关闭连接，这个看业务
         sendPingMsg(ctx);
     }
 
-    protected void handleWriterIdle(ChannelHandlerContext ctx) {
-        logger.info("---WRITER_IDLE---");
+    private void handleWriterIdle(ChannelHandlerContext ctx) {
+        logger.info("--- {} is ---WRITER_IDLE---", ctx.channel().remoteAddress());
         sendPingMsg(ctx);
     }
 
-    protected void handleAllIdle(ChannelHandlerContext ctx) {
-        logger.info("---ALL_IDLE---");
-        // sendPingMsg(ctx);
+    private void handleAllIdle(ChannelHandlerContext ctx) {
+        logger.info("--- {} is---ALL_IDLE---", ctx.channel().remoteAddress());
+        sendPingMsg(ctx);
     }
 }

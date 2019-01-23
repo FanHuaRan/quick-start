@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>heartbeatv2</artifactId>
+    <artifactId>grace_close</artifactId>
 
     <build>
         <plugins>
@@ -27,7 +27,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.fhr.netty.hearbeatv2.server.ServerBoot</mainClass>
+                                    <mainClass>com.fhr.netty.graceclose.server.ServerBoot</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

@@ -1,4 +1,4 @@
-package com.fhr.netty.hearbeatv2;
+package com.fhr.netty.graceclose;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;

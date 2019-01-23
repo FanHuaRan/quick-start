@@ -11,6 +11,7 @@
         <module>filetrans</module>
         <module>heartbeat</module>
         <module>heartbeatv2</module>
+        <module>grace_close</module>
     </modules>
     <packaging>pom</packaging>
 

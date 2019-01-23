@@ -25,10 +25,8 @@ public class ServerBoot {
         NioEventLoopGroup bossGroup = new NioEventLoopGroup(1);
         NioEventLoopGroup workGroup = new NioEventLoopGroup(4);
         try {
-
-
-
             ServerBootstrap bootstrap = new ServerBootstrap();
+
             bootstrap.group(bossGroup, workGroup)
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new ChannelInitializer<SocketChannel>() {
@@ -37,20 +35,21 @@ public class ServerBoot {
                             // 添加空闲状态处理器
                             p.addLast(new IdleStateHandler(0, 0, 10));
                             // 添加行分隔符解码器
-                           // p.addLast(new DelimiterBasedFrameDecoder(1024,true,Unpooled.copiedBuffer("&&".getBytes(StandardCharsets.UTF_8))));
                             p.addLast(new LineBasedFrameDecoder(1024));
                             // 添加字符串解码器
-                           p.addLast(new StringDecoder(StandardCharsets.UTF_8));
-                            p.addLast(new DelimiterEncoder());
-                        //    p.addLast(new StringEncoder(StandardCharsets.UTF_8));
-                            // 添加请求处理器
+                            p.addLast(new StringDecoder(StandardCharsets.UTF_8));
+                            // 添加请求处理器（内含心跳逻辑）
                             p.addLast(new ServerHandler());
-                            // 添加行分隔符编码器
-
+                            // 添加分隔符编码器
+                            p.addLast(new DelimiterEncoder());
                         }
                     });
 
             Channel ch = bootstrap.bind(12345).sync().channel();
+//            new  Thread(()->{
+//                bossGroup.shutdownGracefully();
+//                workGroup.shutdownGracefully();
+//            }).start();
             ch.closeFuture().sync();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -58,6 +57,5 @@ public class ServerBoot {
             bossGroup.shutdownGracefully();
             workGroup.shutdownGracefully();
         }
-
     }
 }

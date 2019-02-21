@@ -1,8 +1,8 @@
 package com.github.fhr.basic.mybatis.intercept.dao;
 
-import com.github.fhr.basic.mybatis.intercept.App;
 import com.github.fhr.basic.mybatis.intercept.MybatisScanConfiguration;
 import com.github.fhr.basic.mybatis.intercept.domain.User;
+import org.apache.ibatis.plugin.Interceptor;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +12,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.swing.*;
 import java.util.List;
 
 /**
@@ -26,6 +25,9 @@ public class UserMapperTest {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    MybatisScanConfiguration mybatisScanConfiguration;
 
     @Test
     public void testAddUser() {

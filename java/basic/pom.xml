@@ -10,6 +10,7 @@
     <modules>
         <module>outofheap</module>
         <module>mybatis</module>
+        <module>limiter</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -40,6 +41,14 @@
                 <artifactId>slf4j-log4j12</artifactId>
                 <version>1.7.21</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>27.0.1-jre</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>junit</groupId>

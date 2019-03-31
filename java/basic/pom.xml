@@ -10,6 +10,10 @@
     <modules>
         <module>outofheap</module>
         <module>mybatis</module>
+        <module>time</module>
+        <module>jvmstart</module>
+        <module>springweb</module>
+        <module>spring-statemachine</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -1,5 +1,9 @@
 package com.github.fhr.quickstart.basic.load;
 
+import com.github.fhr.quickstart.basic.util.MumurHash2Utils;
+
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
@@ -58,7 +62,8 @@ public class ConsistencyLoadBalance implements LoadBalance {
     }
 
     private static int computeHash(Object value) {
-        return Math.abs(value.hashCode());
+        byte[] data = value.toString().getBytes(StandardCharsets.UTF_8);
+        return Math.abs(MumurHash2Utils.murmur2(data));
     }
 
     @Override

@@ -2,8 +2,8 @@ package com.github.fhr.quickstart.basic.load;
 
 import com.github.fhr.quickstart.basic.util.MumurHash2Utils;
 
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
@@ -20,7 +20,17 @@ public class ConsistencyLoadBalance implements LoadBalance {
         this.hashHoop = hashHoop;
     }
 
-    public static ConsistencyLoadBalance create(String[] addresses, int[] weights) {
+    public static LoadBalance create(String[] addresses) {
+        int[] weights = null;
+        if (addresses != null) {
+            weights = new int[addresses.length];
+            Arrays.fill(weights, 1);
+        }
+
+        return create(addresses, weights);
+    }
+
+    public static LoadBalance create(String[] addresses, int[] weights) {
         if (addresses == null || addresses.length == 0) {
             throw new IllegalArgumentException("addresses must not be null or empty");
         }
@@ -31,14 +41,14 @@ public class ConsistencyLoadBalance implements LoadBalance {
             }
         }
 
+        if (weights == null || weights.length == 0) {
+            throw new IllegalArgumentException("weights must not be null or empty");
+        }
+
         for (int weight : weights) {
             if (weight <= 0) {
                 throw new IllegalArgumentException("address must greater than zero:" + weight);
             }
-        }
-
-        if (weights == null || weights.length == 0) {
-            throw new IllegalArgumentException("weights must not be null or empty");
         }
 
         if (addresses.length != weights.length) {

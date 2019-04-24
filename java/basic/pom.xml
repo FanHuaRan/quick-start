@@ -10,7 +10,13 @@
     <modules>
         <module>outofheap</module>
         <module>mybatis</module>
+        <module>time</module>
+        <module>jvmstart</module>
+        <module>springweb</module>
+        <module>spring-statemachine</module>
         <module>limiter</module>
+        <module>consistency-hash</module>
+        <module>load-balance</module>
     </modules>
 
     <packaging>pom</packaging>

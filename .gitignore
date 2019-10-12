@@ -56,3 +56,5 @@ packages/*
 #setting file
 .classpath
 .project
+
+cmake-build-debug

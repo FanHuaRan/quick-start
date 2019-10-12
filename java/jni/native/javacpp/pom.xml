@@ -11,6 +11,8 @@
 
     <artifactId>javacpp</artifactId>
 
+    <packaging>jar</packaging>
+
     <dependencies>
         <dependency>
             <groupId>org.bytedeco</groupId>

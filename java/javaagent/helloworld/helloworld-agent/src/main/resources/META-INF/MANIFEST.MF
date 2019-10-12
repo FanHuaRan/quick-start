@@ -1,2 +1,0 @@
-Premain-Class: com.fhr.javaagent.helloworld.agent.MyAgent
-Can-Redefine-Classes: true

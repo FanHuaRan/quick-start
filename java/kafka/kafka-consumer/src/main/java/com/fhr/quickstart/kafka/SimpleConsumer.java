@@ -34,7 +34,6 @@ public class SimpleConsumer {
 
         //  订阅topic，可以为多个用,隔开Arrays.asList("topic1","topic2");
         consumer.subscribe(Arrays.asList(TOPIC));
-
         while (true) {
             ConsumerRecords<String, String> consumerRecords = consumer.poll(100);
 

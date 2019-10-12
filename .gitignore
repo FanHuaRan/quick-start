@@ -58,3 +58,5 @@ packages/*
 .project
 
 cmake-build-debug
+
+.vs

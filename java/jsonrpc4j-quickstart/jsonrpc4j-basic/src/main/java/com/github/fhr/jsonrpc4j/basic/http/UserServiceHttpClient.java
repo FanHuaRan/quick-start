@@ -15,14 +15,17 @@ import java.net.URL;
  */
 public class UserServiceHttpClient {
     public static void main(String[] args) throws MalformedURLException {
+        // create JsonRpcHttpClient
         JsonRpcHttpClient client = new JsonRpcHttpClient(
                 new URL("http://example.com/UserService.json"));
 
+        // create client proxy with client
         UserService userService = ProxyUtil.createClientProxy(
                 UserServiceHttpClient.class.getClassLoader(),
                 UserService.class,
                 client);
 
+        // do invoke
         User user = userService.createUser("bob", "the builder");
     }
 }

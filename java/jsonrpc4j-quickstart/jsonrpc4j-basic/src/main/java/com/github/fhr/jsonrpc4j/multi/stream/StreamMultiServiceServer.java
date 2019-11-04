@@ -17,26 +17,31 @@ import java.net.ServerSocket;
 /**
  * @author Fan Huaran
  * created on 2019/11/1
- * @description
+ * @description 组合服务发布
  */
 public class StreamMultiServiceServer {
     public static void main(String[] args) throws IOException {
+        // create merge service handler
         UserService userService = new UserServiceImpl();
         ContentService contentService = new ContentServiceImpl();
-
+        // this is create a proxy to expose many service.
         Object compositeService = ProxyUtil.createCompositeServiceProxy(
                 StreamMultiServiceServer.class.getClassLoader(),
                 new Object[]{contentService, userService},
-                new Class<?>[]{ContentService.class,UserService.class},
+                new Class<?>[]{ContentService.class, UserService.class},
                 true);
 
         // create the jsonRpcServer
         JsonRpcServer jsonRpcServer = new JsonRpcServer(new ObjectMapper(), compositeService);
-        // create the stream server
-        int maxThreads = 50;
-        int port = 52420;
+
+        // listen the port
+        final int maxThreads = 50;
+        final int port = 52420;
+        final int backlog = 200;
         InetAddress bindAddress = InetAddress.getLoopbackAddress();
-        ServerSocket serverSocket = new ServerSocket(port, 200, bindAddress);
+        ServerSocket serverSocket = new ServerSocket(port, backlog, bindAddress);
+
+        // jsonRpcServer bind the port
         StreamServer streamServer = new StreamServer(jsonRpcServer, maxThreads, serverSocket);
 
         // start it, this method doesn't block

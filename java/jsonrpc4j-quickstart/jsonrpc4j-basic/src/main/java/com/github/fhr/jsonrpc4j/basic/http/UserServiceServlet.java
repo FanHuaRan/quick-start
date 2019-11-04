@@ -22,6 +22,7 @@ public class UserServiceServlet extends HttpServlet {
     private JsonRpcServer jsonRpcServer;
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        // do it
         jsonRpcServer.handle(req, resp);
     }
 

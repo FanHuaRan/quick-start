@@ -16,11 +16,14 @@ import java.net.SocketAddress;
 public class StreamingSocketClient {
 
     public static void main(String[] args) throws IOException {
+        // create client
         JsonRpcClient rpcClient = new JsonRpcClient();
+        // connect
         Socket socket = new Socket();
         SocketAddress serverAddress = new InetSocketAddress(InetAddress.getLoopbackAddress(), 51420);
         socket.connect(serverAddress);
 
+        // use the socket outPutSteam tu send Rpc invoke . this will not return response
         rpcClient.invoke("createUser", new Object[]{"bob", "the builder"}, socket.getOutputStream());
     }
 }

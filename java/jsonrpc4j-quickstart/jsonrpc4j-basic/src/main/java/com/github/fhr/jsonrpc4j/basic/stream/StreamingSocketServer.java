@@ -17,14 +17,22 @@ import java.net.ServerSocket;
  */
 public class StreamingSocketServer {
     public static void main(String[] args) throws IOException {
+        // service handler
+        UserService handler = new UserServiceImpl();
+
         // create the jsonRpcServer
-        JsonRpcServer jsonRpcServer = new JsonRpcServer(new ObjectMapper(), new UserServiceImpl(), UserService.class);
+        JsonRpcServer jsonRpcServer = new JsonRpcServer(new ObjectMapper(), handler, UserService.class);
 
         // create the stream server
-        int maxThreads = 50;
-        int port = 51420;
+        final int maxThreads = 50;
+        final int port = 51420;
+        final int backlog = 200;
+
+        // listen port
         InetAddress bindAddress = InetAddress.getLoopbackAddress();
-        ServerSocket serverSocket = new ServerSocket(port, 200, bindAddress);
+        ServerSocket serverSocket = new ServerSocket(port, backlog, bindAddress);
+
+        // jsonRpcServer bind the port
         StreamServer streamServer = new StreamServer(jsonRpcServer, maxThreads, serverSocket);
 
         // start it, this method doesn't block

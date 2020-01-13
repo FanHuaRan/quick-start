@@ -5,7 +5,7 @@ import com.github.fhr.jsonrpc4j.service.content.ContentService;
 import com.github.fhr.jsonrpc4j.service.content.ContentServiceImpl;
 import com.github.fhr.jsonrpc4j.service.user.UserService;
 import com.github.fhr.jsonrpc4j.service.user.UserServiceImpl;
-import com.googlecode.jsonrpc4j.JsonRpcBasicServer;
+import com.googlecode.jsonrpc4j.JsonRpcMultiServer;
 import com.googlecode.jsonrpc4j.JsonRpcServer;
 import com.googlecode.jsonrpc4j.ProxyUtil;
 import com.googlecode.jsonrpc4j.StreamServer;
@@ -19,20 +19,19 @@ import java.net.ServerSocket;
  * created on 2019/11/1
  * @description 组合服务发布
  */
-public class StreamMultiServiceServer {
+public class StreamMultiServiceServer2 {
     public static void main(String[] args) throws IOException {
         // create merge service handler
         UserService userService = new UserServiceImpl();
         ContentService contentService = new ContentServiceImpl();
-        // this is create a proxy to expose many service.
-        Object compositeService = ProxyUtil.createCompositeServiceProxy(
-                StreamMultiServiceServer.class.getClassLoader(),
-                new Object[]{contentService, userService},
-                new Class<?>[]{ContentService.class, UserService.class},
-                true);
 
-        // create the jsonRpcServer
-        JsonRpcServer jsonRpcServer = new JsonRpcServer(new ObjectMapper(), compositeService);
+        // create the jsonRpcMultiServer
+        JsonRpcMultiServer jsonRpcServer = new JsonRpcMultiServer(new ObjectMapper());
+        // add user service
+        jsonRpcServer.addService("user", userService);
+        // add content
+        jsonRpcServer.addService("content", contentService);
+
         // listen the port
         final int maxThreads = 50;
         final int port = 52420;
